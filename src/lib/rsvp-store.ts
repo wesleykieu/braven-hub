@@ -12,7 +12,8 @@ export type Rsvp = {
 };
 
 // File-backed store for local dev. Swap for Supabase/Postgres before deploying (serverless disks are ephemeral).
-const FILE = path.join(process.cwd(), ".data", "rsvps.json");
+export const DATA_DIR = process.env.VERCEL ? "/tmp/braven-hub" : path.join(process.cwd(), ".data");
+const FILE = path.join(DATA_DIR, "rsvps.json");
 
 async function readAll(): Promise<Rsvp[]> {
   try {

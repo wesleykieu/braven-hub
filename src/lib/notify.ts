@@ -14,7 +14,9 @@ import { buildIcs, eventLocation, formatEventDate, formatTimeRange, googleMapsDi
 
 export type ChannelResult = { status: "sent" | "scheduled" | "demo" | "skipped" | "error"; detail?: string };
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3200";
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3200");
 
 export function normalizePhone(raw: string) {
   const digits = raw.replace(/\D/g, "");
